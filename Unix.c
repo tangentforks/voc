@@ -35,15 +35,8 @@ typedef
 	} Unix_Itimerval;
 
 typedef
-	struct Unix_sigsett {
-		LONGINT val[16];
-	} Unix_sigsett;
-
-typedef
 	struct Unix_JmpBuf {
-		LONGINT bx, si, di, bp, sp, pc, ki, ku;
-		INTEGER maskWasSaved;
-		Unix_sigsett savedMask;
+		INTEGER f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36;
 	} Unix_JmpBuf;
 
 typedef
@@ -84,15 +77,24 @@ typedef
 
 typedef
 	struct Unix_Status {
-		LONGINT dev, ino, nlink;
-		INTEGER mode, uid, gid, pad0;
-		LONGINT rdev, size, blksize, blocks, atime, atimences, mtime, mtimensec, ctime, ctimensec, unused0, unused1, unused2;
+		INTEGER dev, ino;
+		SHORTINT mode, mode1, nlink, nlink1;
+		INTEGER uid, gid, rdev;
+		LONGINT atime, atimences, mtime, mtimences, ctime, ctimences, size, blocks;
+		INTEGER blksize, flags, gen, lspare;
+		LONGINT birthtime, birthtimences;
+		INTEGER qspare, qspare1;
 	} Unix_Status;
 
 typedef
 	struct Unix_Timezone {
 		INTEGER minuteswest, dsttime;
 	} Unix_Timezone;
+
+typedef
+	struct Unix_sigsett {
+		LONGINT val[16];
+	} Unix_sigsett;
 
 
 
@@ -164,10 +166,13 @@ export void Unix_system (CHAR *cmd, LONGINT cmd__len);
 #define Unix_err()	errno
 #define Unix_fstat(fd, statbuf, statbuf__typ)	fstat(fd, (struct stat*)statbuf)
 #include <errno.h>
+#include <fcntl.h>
 #include <sys/select.h>
+#include <signal.h>
 #include <sys/stat.h>
-#include <stdlib.h>
-#include <time.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/uio.h>
 #include <unistd.h>
 #define Unix_stat(name, name__len, statbuf, statbuf__typ)	stat((const char*)name, (struct stat*)statbuf)
 #define Unix_sys(str, str__len)	system(str)
@@ -211,8 +216,8 @@ INTEGER Unix_System (CHAR *cmd, LONGINT cmd__len)
 }
 
 __TDESC(Unix_sigsett, 1, 0) = {__TDFLDS("sigsett", 128), {-8}};
-__TDESC(Unix_JmpBuf, 1, 0) = {__TDFLDS("JmpBuf", 200), {-8}};
-__TDESC(Unix_Status, 1, 0) = {__TDFLDS("Status", 144), {-8}};
+__TDESC(Unix_JmpBuf, 1, 0) = {__TDFLDS("JmpBuf", 148), {-8}};
+__TDESC(Unix_Status, 1, 0) = {__TDFLDS("Status", 128), {-8}};
 __TDESC(Unix_Timeval, 1, 0) = {__TDFLDS("Timeval", 16), {-8}};
 __TDESC(Unix_Timezone, 1, 0) = {__TDFLDS("Timezone", 8), {-8}};
 __TDESC(Unix_Itimerval, 1, 0) = {__TDFLDS("Itimerval", 32), {-8}};

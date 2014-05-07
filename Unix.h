@@ -38,16 +38,9 @@ typedef
 	} Unix_Itimerval;
 
 typedef
-	struct Unix_sigsett {
-		LONGINT _prvt0;
-		char _prvt1[120];
-	} Unix_sigsett;
-
-typedef
 	struct Unix_JmpBuf {
-		LONGINT bx, si, di, bp, sp, pc, ki, ku;
-		INTEGER maskWasSaved;
-		Unix_sigsett savedMask;
+		INTEGER _prvt0;
+		char _prvt1[144];
 	} Unix_JmpBuf;
 
 typedef
@@ -88,15 +81,25 @@ typedef
 
 typedef
 	struct Unix_Status {
-		LONGINT dev, ino, nlink;
-		INTEGER mode, uid, gid, pad0;
-		LONGINT rdev, size, blksize, blocks, atime, atimences, mtime, mtimensec, ctime, ctimensec, unused0, unused1, unused2;
+		INTEGER dev, ino;
+		SHORTINT mode, mode1, nlink, nlink1;
+		INTEGER uid, gid, rdev;
+		LONGINT atime, atimences, mtime, mtimences, ctime, ctimences, size, blocks;
+		INTEGER blksize, flags, gen, lspare;
+		LONGINT birthtime, birthtimences;
+		INTEGER qspare, qspare1;
 	} Unix_Status;
 
 typedef
 	struct Unix_Timezone {
 		INTEGER minuteswest, dsttime;
 	} Unix_Timezone;
+
+typedef
+	struct Unix_sigsett {
+		LONGINT _prvt0;
+		char _prvt1[120];
+	} Unix_sigsett;
 
 
 

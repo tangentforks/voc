@@ -77,8 +77,8 @@ export void *extTools__init(void)
 	__IMPORT(version);
 	__REGMOD("extTools", 0);
 /* BEGIN */
-	__MOVE("src/lib/system/linux/", extTools_incPath0, 22);
-	Strings_Append((CHAR*)"gcc", (LONGINT)4, (void*)extTools_incPath0, 1023);
+	__MOVE("src/lib/system/freebsd/", extTools_incPath0, 24);
+	Strings_Append((CHAR*)"clang", (LONGINT)6, (void*)extTools_incPath0, 1023);
 	__MOVE("lib/voc/obj ", extTools_incPath1, 13);
 	__MOVE(" -fPIC -g ", extTools_ccOpt, 11);
 	__COPY("-I ", extTools_tmp1, 1023);
@@ -95,7 +95,7 @@ export void *extTools__init(void)
 	Args_GetEnv((CHAR*)"CFLAGS", (LONGINT)7, (void*)extTools_CFLAGS, 1023);
 	Strings_Append(extTools_CFLAGS, 1023, (void*)extTools_ccOpt, 1023);
 	Strings_Append((CHAR*)" ", (LONGINT)2, (void*)extTools_ccOpt, 1023);
-	__MOVE("gcc", extTools_ccString, 4);
+	__MOVE("clang", extTools_ccString, 6);
 	Strings_Append((CHAR*)" ", (LONGINT)2, (void*)extTools_ccString, 1023);
 	__ENDMOD;
 }

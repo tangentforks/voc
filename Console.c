@@ -17,6 +17,7 @@ export void Console_ReadLine (CHAR *line, LONGINT line__len);
 export void Console_String (CHAR *s, LONGINT s__len);
 
 #define Console_Write(adr, n)	write(1/*stdout*/, adr, n)
+#include <unistd.h>
 #define Console_read(ch)	read(0/*stdin*/, ch, 1)
 
 void Console_Flush (void)

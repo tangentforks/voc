@@ -20,7 +20,7 @@
 #include "varargs.h"
 #endif
 
-extern void *malloc(unsigned long size);
+extern void *malloc(size_t size);
 extern void exit(int status);
 
 void (*SYSTEM_Halt)();

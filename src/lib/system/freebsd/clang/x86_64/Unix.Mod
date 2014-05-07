@@ -209,7 +209,7 @@ typedef struct
     *)
     (*savedMask*: sigsett;*)
   END ;
-
+(*
   Status* = RECORD (* struct stat *)
     dev* : INTEGER; (* dev_t 4 *)
     mode*: SHORTINT; mode1*: SHORTINT; (* mode_t 2 *)
@@ -229,7 +229,28 @@ typedef struct
     lspare* : INTEGER;
     qspare*, qspare1*: LONGINT;
   END ;
+*)
+  Status* = RECORD (* struct stat *)
+    dev* : INTEGER; (* dev_t 4 *)
+    ino* : INTEGER; (* ino_t 4 *)
+    mode*: SHORTINT; mode1*: SHORTINT; (* mode_t 2 *)
+    nlink* : SHORTINT; nlink1*: SHORTINT; (* nlink_t 2 *)
+    uid*, gid*: INTEGER; (* uid_t, gid_t 4 *)
+    rdev*: INTEGER; (* dev_t 4 *)
+    atime* : LONGINT; atimences* : LONGINT; (* struct timespec 16 *)
+    mtime* : LONGINT; mtimences* : LONGINT; (* struct timespec 16 *)
+    ctime* : LONGINT; ctimences* : LONGINT; (* struct timespec 16 *)
+    size*: LONGINT; (* off_t 8 *) 
+    blocks* : LONGINT;
+    blksize* : INTEGER;
+    flags* : INTEGER;
+    gen* : INTEGER;
+    lspare* : INTEGER;
+    birthtime* : LONGINT; birthtimences* : LONGINT; (* struct timespec 16 *)
+    qspare*, qspare1*: INTEGER;
+  END ;
  
+
 (* from /usr/include/bits/time.h
 
 struct timeval
