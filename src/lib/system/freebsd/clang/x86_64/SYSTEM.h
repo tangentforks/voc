@@ -10,7 +10,7 @@ clang for Darwin version
 uses double # as concatenation operator
 
 */
-
+#include <stdlib.h>
 //#include <alloca.h>
 //#include <string.h>
 
